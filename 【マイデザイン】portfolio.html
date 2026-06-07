@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>haru.design — Creative Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --text: #1a1a1a;
+  --text-muted: #888;
+  --border: #e8e4de;
+  --bg: #faf9f7;
+  --white: #ffffff;
+  --accent-soft: #f5f3ef;
+  --serif: 'DM Serif Display', Georgia, serif;
+  --sans: 'DM Sans', system-ui, sans-serif;
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--sans); background: var(--bg); color: var(--text); font-size: 16px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(250,249,247,0.93); backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 48px; height: 60px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo { font-family: var(--serif); font-size: 18px; color: var(--text); text-decoration: none; }
+.nav-links { display: flex; gap: 32px; list-style: none; }
+.nav-links a { font-size: 13px; color: var(--text-muted); text-decoration: none; letter-spacing: 0.5px; transition: color 0.2s; }
+.nav-links a:hover { color: var(--text); }
+
+/* HERO */
+#hero {
+  max-width: 1100px; margin: 0 auto;
+  min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
+  padding: 120px 48px 80px;
+}
+.hero-label { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 28px; }
+.hero-title { font-family: var(--serif); font-size: clamp(52px, 8vw, 96px); line-height: 1.0; letter-spacing: -2px; margin-bottom: 32px; }
+.hero-title em { font-style: italic; color: var(--text-muted); }
+.hero-desc { font-size: 16px; color: var(--text-muted); max-width: 480px; line-height: 1.8; margin-bottom: 40px; }
+.hero-skills { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 48px; }
+.skill-tag { font-size: 12px; padding: 5px 14px; border: 1px solid var(--border); border-radius: 20px; color: var(--text-muted); background: var(--white); }
+.hero-scroll { display: flex; align-items: center; gap: 12px; font-size: 12px; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; }
+.scroll-line { width: 40px; height: 1px; background: var(--border); }
+
+/* FULL-WIDTH DIVIDER */
+.full-divider { height: 1px; background: var(--border); }
+.section-inner { max-width: 1100px; margin: 0 auto; padding: 100px 48px; }
+
+/* SECTION HEADER */
+.section-header { margin-bottom: 56px; }
+.section-label { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--text-muted); }
+.section-title { font-family: var(--serif); font-size: clamp(32px, 4vw, 48px); letter-spacing: -1px; line-height: 1.1; margin-top: 12px; }
+
+/* ============================================================
+   SECTION 1 — WEB DESIGN
+   2カラムグリッド / クリックでサイトへ飛べる
+   ============================================================ */
+#web { background: var(--bg); }
+.web-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.web-card {
+  display: block; text-decoration: none; color: inherit;
+  background: var(--white); border: 1px solid var(--border);
+  overflow: hidden; transition: transform 0.25s, border-color 0.25s;
+}
+.web-card:hover { transform: translateY(-4px); border-color: #aaa; }
+.web-thumb {
+  width: 100%; aspect-ratio: 16/9;
+  background: var(--accent-soft); overflow: hidden; position: relative;
+  display: flex; align-items: center; justify-content: center;
+}
+.web-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.web-thumb-ph { font-family: var(--serif); font-size: 13px; color: var(--text-muted); text-align: center; line-height: 1.7; padding: 24px; }
+.web-overlay {
+  position: absolute; inset: 0;
+  background: rgba(26,26,26,0.55);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transition: opacity 0.25s;
+}
+.web-card:hover .web-overlay { opacity: 1; }
+.web-overlay-label { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: #fff; border: 1px solid rgba(255,255,255,0.6); padding: 8px 20px; }
+.web-info { padding: 20px 24px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+.web-info-left {}
+.web-cat { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
+.web-name { font-size: 15px; font-weight: 500; }
+.web-arrow { font-size: 18px; color: var(--text-muted); transition: transform 0.2s; }
+.web-card:hover .web-arrow { transform: translate(3px, -3px); }
+
+/* ============================================================
+   SECTION 2 — FLYER / GRAPHIC DESIGN
+   3カテゴリ × スライダー / 背景ダーク
+   ============================================================ */
+#flyer { background: #111; }
+#flyer .section-label { color: rgba(255,255,255,0.35); }
+#flyer .section-title { color: #fff; }
+.flyer-categories { display: flex; flex-direction: column; gap: 64px; }
+
+/* カテゴリラベル */
+.flyer-cat-label {
+  font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+  color: rgba(255,255,255,0.35); margin-bottom: 16px;
+  padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.08);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.flyer-cat-name { color: #fff; font-size: 16px; font-weight: 500; letter-spacing: 0; text-transform: none; }
+
+/* スライダーラッパー */
+.slider-wrap { position: relative; }
+.slider-track { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding-bottom: 4px; }
+.slider-track::-webkit-scrollbar { display: none; }
+.slide-item {
+  flex: 0 0 calc(33.333% - 11px);
+  scroll-snap-align: start;
+  background: #1e1e1e; border: 1px solid rgba(255,255,255,0.07);
+  overflow: hidden;
+}
+.slide-item.product { flex: 0 0 calc(50% - 8px); }
+.slide-thumb {
+  width: 100%; aspect-ratio: 3/4;
+  background: #2a2a2a;
+  display: flex; align-items: center; justify-content: center; overflow: hidden;
+}
+.slide-thumb.landscape { aspect-ratio: 16/9; }
+.slide-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.slide-thumb-ph { font-size: 12px; color: rgba(255,255,255,0.2); text-align: center; padding: 20px; line-height: 1.7; }
+.slide-info { padding: 14px 16px; border-top: 1px solid rgba(255,255,255,0.07); }
+.slide-title { font-size: 13px; color: rgba(255,255,255,0.7); }
+
+/* スライダーボタン */
+.slider-btn {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 36px; height: 36px;
+  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
+  color: #fff; font-size: 16px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; z-index: 2; transition: background 0.2s;
+  user-select: none;
+}
+.slider-btn:hover { background: rgba(255,255,255,0.18); }
+.slider-btn.prev { left: -18px; }
+.slider-btn.next { right: -18px; }
+
+/* ドット */
+.slider-dots { display: flex; gap: 6px; justify-content: center; margin-top: 16px; }
+.slider-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.2); cursor: pointer; transition: background 0.2s; }
+.slider-dot.active { background: rgba(255,255,255,0.8); }
+
+/* ============================================================
+   SECTION 3 — VIDEO
+   グリッドカード / クリックでYouTubeへ
+   ============================================================ */
+#video { background: var(--accent-soft); }
+.video-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.video-card {
+  display: block; text-decoration: none; color: inherit;
+  background: var(--white); border: 1px solid var(--border);
+  overflow: hidden; transition: transform 0.25s, border-color 0.25s;
+}
+.video-card:hover { transform: translateY(-4px); border-color: #aaa; }
+.video-thumb {
+  width: 100%; aspect-ratio: 16/9;
+  background: #1a1a1a; position: relative; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+}
+.video-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.video-thumb-ph { color: rgba(255,255,255,0.2); font-size: 12px; text-align: center; padding: 16px; line-height: 1.7; }
+.play-icon {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(0,0,0,0.3); transition: background 0.25s;
+}
+.video-card:hover .play-icon { background: rgba(0,0,0,0.5); }
+.play-circle {
+  width: 48px; height: 48px; border-radius: 50%;
+  background: rgba(255,255,255,0.9);
+  display: flex; align-items: center; justify-content: center;
+  transition: transform 0.2s;
+}
+.video-card:hover .play-circle { transform: scale(1.1); }
+.play-triangle {
+  width: 0; height: 0;
+  border-top: 9px solid transparent;
+  border-bottom: 9px solid transparent;
+  border-left: 16px solid #1a1a1a;
+  margin-left: 3px;
+}
+.video-info { padding: 16px 20px; border-top: 1px solid var(--border); }
+.video-cat { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
+.video-title { font-size: 14px; font-weight: 500; color: var(--text); }
+
+/* ABOUT */
+#about { background: var(--bg); }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+.about-text p { font-size: 16px; color: var(--text-muted); line-height: 1.9; margin-bottom: 20px; }
+.skills-list { display: flex; flex-direction: column; gap: 0; }
+.skill-row { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; border-bottom: 1px solid var(--border); }
+.skill-name { font-size: 14px; font-weight: 500; }
+.skill-exp { font-size: 12px; color: var(--text-muted); background: var(--accent-soft); padding: 3px 10px; border-radius: 12px; }
+
+/* CONTACT */
+#contact { background: var(--white); border-top: 1px solid var(--border); }
+.contact-inner { max-width: 600px; }
+.contact-desc { font-size: 15px; color: var(--text-muted); margin-bottom: 40px; line-height: 1.8; }
+.form-group { margin-bottom: 20px; }
+.form-group label { display: block; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; }
+.form-group input, .form-group textarea, .form-group select {
+  width: 100%; padding: 12px 16px;
+  font-family: var(--sans); font-size: 14px; color: var(--text);
+  background: var(--bg); border: 1px solid var(--border);
+  border-radius: 0; outline: none; transition: border-color 0.2s; -webkit-appearance: none;
+}
+.form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--text); }
+.form-group textarea { height: 140px; resize: vertical; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.submit-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 32px; background: var(--text); color: var(--white);
+  font-family: var(--sans); font-size: 13px; font-weight: 500;
+  letter-spacing: 1px; text-transform: uppercase;
+  border: none; cursor: pointer; transition: opacity 0.2s;
+}
+.submit-btn:hover { opacity: 0.8; }
+
+/* FOOTER */
+footer { padding: 40px 48px; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; font-size: 12px; color: var(--text-muted); }
+
+/* FADE IN */
+.fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.fade-in.visible { opacity: 1; transform: none; }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  nav { padding: 0 24px; }
+  nav .nav-links { display: none; }
+  #hero { padding: 100px 24px 72px; }
+  .section-inner { padding: 72px 24px; }
+  .web-grid { grid-template-columns: 1fr; }
+  .slide-item { flex: 0 0 80%; }
+  .slide-item.product { flex: 0 0 85%; }
+  .video-grid { grid-template-columns: 1fr; }
+  .about-grid { grid-template-columns: 1fr; gap: 40px; }
+  .form-row { grid-template-columns: 1fr; }
+  footer { padding: 32px 24px; flex-direction: column; gap: 12px; text-align: center; }
+  .slider-btn { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#hero">haru.design</a>
+  <ul class="nav-links">
+    <li><a href="#web">Web</a></li>
+    <li><a href="#flyer">Graphics</a></li>
+    <li><a href="#video">Video</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <p class="hero-label">Creative Designer — Based in Japan</p>
+  <h1 class="hero-title">haru<br><em>.design</em></h1>
+  <p class="hero-desc">WebサイトのデザインからYouTube動画編集まで、<br>幅広いクリエイティブ制作を手がけるデザイナーです。</p>
+  <div class="hero-skills">
+    <span class="skill-tag">Web Design</span>
+    <span class="skill-tag">Graphic Design</span>
+    <span class="skill-tag">Video Editing</span>
+    <span class="skill-tag">Photoshop</span>
+    <span class="skill-tag">Illustrator</span>
+    <span class="skill-tag">Premiere Pro</span>
+    <span class="skill-tag">Wix</span>
+  </div>
+  <div class="hero-scroll"><span class="scroll-line"></span>Scroll to works</div>
+</section>
+
+<div class="full-divider"></div>
+
+<!-- ============================================================
+     SECTION 1 — WEB DESIGN
+     ============================================================ -->
+<div id="web">
+  <div class="section-inner">
+    <div class="section-header fade-in">
+      <p class="section-label">Web design</p>
+      <h2 class="section-title">Websites</h2>
+    </div>
+    <div class="web-grid fade-in">
+
+      <!-- サイト1 -->
+      <!-- href="https://your-site-url.com" の部分を実際のURLに変えてください -->
+      <a class="web-card" href="https://your-site-1.com" target="_blank" rel="noopener">
+        <div class="web-thumb">
+          <!-- モックアップ画像: src="images/site1.jpg" のように指定 -->
+          <!-- <img src="images/site1.jpg" alt="サイト1モックアップ"> -->
+          <div class="web-thumb-ph">サイト1のスクリーンショット<br>またはモックアップ画像<br><br>img タグのコメントを外して<br>画像パスを指定してください</div>
+          <div class="web-overlay"><span class="web-overlay-label">View Site</span></div>
+        </div>
+        <div class="web-info">
+          <div class="web-info-left">
+            <p class="web-cat">Web Design</p>
+            <p class="web-name">サイト名をここに入力</p>
+          </div>
+          <span class="web-arrow">↗</span>
+        </div>
+      </a>
+
+      <!-- サイト2 -->
+      <a class="web-card" href="https://your-site-2.com" target="_blank" rel="noopener">
+        <div class="web-thumb">
+          <!-- <img src="images/site2.jpg" alt="サイト2モックアップ"> -->
+          <div class="web-thumb-ph">サイト2のスクリーンショット<br>またはモックアップ画像</div>
+          <div class="web-overlay"><span class="web-overlay-label">View Site</span></div>
+        </div>
+        <div class="web-info">
+          <div class="web-info-left">
+            <p class="web-cat">Web Design</p>
+            <p class="web-name">サイト名をここに入力</p>
+          </div>
+          <span class="web-arrow">↗</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</div>
+
+<div class="full-divider"></div>
+
+<!-- ============================================================
+     SECTION 2 — FLYER / GRAPHIC DESIGN（ダーク背景）
+     ============================================================ -->
+<div id="flyer">
+  <div class="section-inner">
+    <div class="section-header fade-in">
+      <p class="section-label">Graphic design</p>
+      <h2 class="section-title" style="color:#fff;">Flyers & Graphics</h2>
+    </div>
+
+    <div class="flyer-categories">
+
+      <!-- カテゴリ1: 告知フライヤー -->
+      <div class="fade-in">
+        <div class="flyer-cat-label">
+          <span style="letter-spacing:2px;">01</span>
+          <span class="flyer-cat-name">告知フライヤー</span>
+          <span>Announcement Flyer</span>
+        </div>
+        <div class="slider-wrap" data-slider="flyer1">
+          <button class="slider-btn prev" onclick="slide('flyer1',-1)">&#8592;</button>
+          <div class="slider-track" id="flyer1">
+            <!-- フライヤー画像をここに追加 -->
+            <!-- 例: <div class="slide-item"><div class="slide-thumb"><img src="images/flyer1.jpg" alt="フライヤー1"></div><div class="slide-info"><p class="slide-title">イベント名</p></div></div> -->
+            <div class="slide-item"><div class="slide-thumb"><div class="slide-thumb-ph">フライヤー1<br><br>img タグで<br>画像を差し込む</div></div><div class="slide-info"><p class="slide-title">イベント告知フライヤー 01</p></div></div>
+            <div class="slide-item"><div class="slide-thumb"><div class="slide-thumb-ph">フライヤー2</div></div><div class="slide-info"><p class="slide-title">イベント告知フライヤー 02</p></div></div>
+            <div class="slide-item"><div class="slide-thumb"><div class="slide-thumb-ph">フライヤー3</div></div><div class="slide-info"><p class="slide-title">イベント告知フライヤー 03</p></div></div>
+            <div class="slide-item"><div class="slide-thumb"><div class="slide-thumb-ph">フライヤー4</div></div><div class="slide-info"><p class="slide-title">イベント告知フライヤー 04</p></div></div>
+          </div>
+          <button class="slider-btn next" onclick="slide('flyer1', 1)">&#8594;</button>
+          <div class="slider-dots" id="dots-flyer1"></div>
+        </div>
+      </div>
+
+      <!-- カテゴリ2: スポーツ選手画像 -->
+      <div class="fade-in">
+        <div class="flyer-cat-label">
+          <span style="letter-spacing:2px;">02</span>
+          <span class="flyer-cat-name">スポーツ選手画像</span>
+          <span>Sports Visual</span>
+        </div>
+        <div class="slider-wrap" data-slider="flyer2">
+          <button class="slider-btn prev" onclick="slide('flyer2',-1)">&#8592;</button>
+          <div class="slider-track" id="flyer2">
+            <div class="slide-item"><div class="slide-thumb"><div class="slide-thumb-ph">スポーツ選手画像1</div></div><div class="slide-info"><p class="slide-title">スポーツポスター 01</p></div></div>
+            <div class="slide-item"><div class="slide-thumb"><div class="slide-thumb-ph">スポーツ選手画像2</div></div><div class="slide-info"><p class="slide-title">スポーツポスター 02</p></div></div>
+            <div class="slide-item"><div class="slide-thumb"><div class="slide-thumb-ph">スポーツ選手画像3</div></div><div class="slide-info"><p class="slide-title">スポーツポスター 03</p></div></div>
+          </div>
+          <button class="slider-btn next" onclick="slide('flyer2', 1)">&#8594;</button>
+          <div class="slider-dots" id="dots-flyer2"></div>
+        </div>
+      </div>
+
+      <!-- カテゴリ3: 商品画像 -->
+      <div class="fade-in">
+        <div class="flyer-cat-label">
+          <span style="letter-spacing:2px;">03</span>
+          <span class="flyer-cat-name">商品画像</span>
+          <span>Product Visual</span>
+        </div>
+        <div class="slider-wrap" data-slider="flyer3">
+          <button class="slider-btn prev" onclick="slide('flyer3',-1)">&#8592;</button>
+          <div class="slider-track" id="flyer3">
+            <div class="slide-item product"><div class="slide-thumb landscape"><div class="slide-thumb-ph">商品画像1</div></div><div class="slide-info"><p class="slide-title">商品ビジュアル 01</p></div></div>
+            <div class="slide-item product"><div class="slide-thumb landscape"><div class="slide-thumb-ph">商品画像2</div></div><div class="slide-info"><p class="slide-title">商品ビジュアル 02</p></div></div>
+          </div>
+          <button class="slider-btn next" onclick="slide('flyer3', 1)">&#8594;</button>
+          <div class="slider-dots" id="dots-flyer3"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="full-divider"></div>
+
+<!-- ============================================================
+     SECTION 3 — VIDEO
+     ============================================================ -->
+<div id="video">
+  <div class="section-inner">
+    <div class="section-header fade-in">
+      <p class="section-label">YouTube works</p>
+      <h2 class="section-title">Video Editing</h2>
+    </div>
+    <div class="video-grid fade-in">
+
+      <!-- 動画1 -->
+      <!-- href="https://youtu.be/動画ID" の部分を実際のYouTube URLに変えてください -->
+      <a class="video-card" href="https://youtu.be/VIDEO_ID_1" target="_blank" rel="noopener">
+        <div class="video-thumb">
+          <!-- サムネイル画像がある場合: <img src="images/thumb1.jpg" alt="動画1"> -->
+          <!-- YouTubeのサムネイルをそのまま使う場合: <img src="https://img.youtube.com/vi/動画ID/hqdefault.jpg" alt=""> -->
+          <div class="video-thumb-ph">サムネイル画像<br>または YouTube URL を<br>img src に指定</div>
+          <div class="play-icon"><div class="play-circle"><div class="play-triangle"></div></div></div>
+        </div>
+        <div class="video-info">
+          <p class="video-cat">Video Editing</p>
+          <p class="video-title">動画タイトルをここに入力</p>
+        </div>
+      </a>
+
+      <!-- 動画2 -->
+      <a class="video-card" href="https://youtu.be/VIDEO_ID_2" target="_blank" rel="noopener">
+        <div class="video-thumb">
+          <div class="video-thumb-ph">サムネイル画像</div>
+          <div class="play-icon"><div class="play-circle"><div class="play-triangle"></div></div></div>
+        </div>
+        <div class="video-info">
+          <p class="video-cat">Video Editing</p>
+          <p class="video-title">動画タイトルをここに入力</p>
+        </div>
+      </a>
+
+      <!-- 動画3 -->
+      <a class="video-card" href="https://youtu.be/VIDEO_ID_3" target="_blank" rel="noopener">
+        <div class="video-thumb">
+          <div class="video-thumb-ph">サムネイル画像</div>
+          <div class="play-icon"><div class="play-circle"><div class="play-triangle"></div></div></div>
+        </div>
+        <div class="video-info">
+          <p class="video-cat">Video Editing</p>
+          <p class="video-title">動画タイトルをここに入力</p>
+        </div>
+      </a>
+
+      <!-- 動画を追加する場合は上の<a>ブロックをコピーして増やしてください -->
+
+    </div>
+  </div>
+</div>
+
+<div class="full-divider"></div>
+
+<!-- ABOUT -->
+<div id="about">
+  <div class="section-inner">
+    <div class="section-header fade-in">
+      <p class="section-label">Profile</p>
+      <h2 class="section-title">About me</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-text fade-in">
+        <p>企業のWebサイト更新・新規ページ制作、告知フライヤー・スポーツポスターなどのグラフィックデザイン、対談動画などのYouTube動画編集を担当するCreative Designerです。</p>
+        <p>PhotoshopやIllustratorを使った画像制作、Wixを使ったWebデザイン、Adobe Premiere Proを使った動画編集まで、幅広いクリエイティブ制作に対応しています。</p>
+        <p>副業・フリーランス案件も受け付けています。お気軽にお問い合わせください。</p>
+      </div>
+      <div class="skills-list fade-in">
+        <div class="skill-row"><span class="skill-name">Photoshop</span><span class="skill-exp">2年以上</span></div>
+        <div class="skill-row"><span class="skill-name">Illustrator</span><span class="skill-exp">2年以上</span></div>
+        <div class="skill-row"><span class="skill-name">Adobe Premiere Pro</span><span class="skill-exp">1年以上</span></div>
+        <div class="skill-row"><span class="skill-name">Wix</span><span class="skill-exp">1年以上</span></div>
+        <div class="skill-row"><span class="skill-name">HTML / CSS</span><span class="skill-exp">基礎知識あり</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div id="contact" style="background:var(--white); border-top:1px solid var(--border);">
+  <div class="section-inner">
+    <div class="section-header fade-in">
+      <p class="section-label">Get in touch</p>
+      <h2 class="section-title">Contact</h2>
+    </div>
+    <div class="contact-inner">
+      <p class="contact-desc fade-in">副業・フリーランス案件のご依頼、転職に関するご連絡など、<br>お気軽にメッセージをお送りください。</p>
+      <form class="fade-in" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <div class="form-group"><label for="name">お名前</label><input type="text" id="name" name="name" placeholder="山田 太郎" required></div>
+          <div class="form-group"><label for="email">メールアドレス</label><input type="email" id="email" name="email" placeholder="taro@example.com" required></div>
+        </div>
+        <div class="form-group">
+          <label for="subject">件名</label>
+          <select id="subject" name="subject">
+            <option value="">選択してください</option>
+            <option value="web">Webデザイン依頼</option>
+            <option value="graphic">グラフィックデザイン依頼</option>
+            <option value="video">動画編集依頼</option>
+            <option value="other">その他・ご相談</option>
+          </select>
+        </div>
+        <div class="form-group"><label for="message">メッセージ</label><textarea id="message" name="message" placeholder="ご依頼内容や予算・納期などをお聞かせください" required></textarea></div>
+        <button type="submit" class="submit-btn">送信する &rarr;</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <span>&copy; 2025 haru.design. All rights reserved.</span>
+  <span>Creative Designer — Japan</span>
+</footer>
+
+<script>
+/* フェードイン */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+/* スライダー */
+function buildDots(id) {
+  const track = document.getElementById(id);
+  const dotsEl = document.getElementById('dots-' + id);
+  if (!track || !dotsEl) return;
+  const items = track.querySelectorAll('.slide-item');
+  dotsEl.innerHTML = '';
+  items.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'slider-dot' + (i === 0 ? ' active' : '');
+    d.onclick = () => scrollToIndex(id, i);
+    dotsEl.appendChild(d);
+  });
+}
+
+function scrollToIndex(id, index) {
+  const track = document.getElementById(id);
+  const item = track.querySelectorAll('.slide-item')[index];
+  if (item) track.scrollTo({ left: item.offsetLeft - track.offsetLeft, behavior: 'smooth' });
+}
+
+function updateDots(id) {
+  const track = document.getElementById(id);
+  const dots = document.querySelectorAll('#dots-' + id + ' .slider-dot');
+  const items = track.querySelectorAll('.slide-item');
+  let closest = 0, minDist = Infinity;
+  items.forEach((item, i) => {
+    const dist = Math.abs(item.offsetLeft - track.scrollLeft - track.offsetLeft);
+    if (dist < minDist) { minDist = dist; closest = i; }
+  });
+  dots.forEach((d, i) => d.classList.toggle('active', i === closest));
+}
+
+function slide(id, dir) {
+  const track = document.getElementById(id);
+  const item = track.querySelector('.slide-item');
+  if (!item) return;
+  const w = item.offsetWidth + 16;
+  track.scrollBy({ left: dir * w, behavior: 'smooth' });
+}
+
+['flyer1','flyer2','flyer3'].forEach(id => {
+  buildDots(id);
+  const track = document.getElementById(id);
+  if (track) track.addEventListener('scroll', () => updateDots(id), { passive: true });
+});
+
+/* コンタクトフォーム */
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('.submit-btn');
+  btn.textContent = '送信しました ✓';
+  btn.style.background = '#555';
+  setTimeout(() => { btn.innerHTML = '送信する &rarr;'; btn.style.background = ''; e.target.reset(); }, 3000);
+}
+</script>
+</body>
+</html>
