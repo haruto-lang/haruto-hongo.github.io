@@ -151,6 +151,15 @@ nav {
 .slider-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.2); cursor: pointer; transition: background 0.2s; }
 .slider-dot.active { background: rgba(255,255,255,0.8); }
 
+/* ビデオスライダー専用スタイル（ライト背景） */
+#video .slide-item { background: var(--white); border: 1px solid var(--border); text-decoration: none; display: block; transition: transform 0.25s, border-color 0.25s; }
+#video .slide-item:hover { transform: translateY(-4px); border-color: #aaa; }
+#video .slide-thumb { background: #f0f0f0; }
+#video .slide-info { border-top: 1px solid var(--border); }
+#video .slide-title { color: var(--text) !important; font-size: 13px; }
+#video .slider-dot { background: rgba(26,26,26,0.2); }
+#video .slider-dot.active { background: rgba(26,26,26,0.8); }
+
 /* ============================================================
    SECTION 3 — VIDEO
    グリッドカード / クリックでYouTubeへ
@@ -413,7 +422,7 @@ footer { padding: 40px 48px; max-width: 1100px; margin: 0 auto; display: flex; a
 <div class="full-divider"></div>
 
 <!-- ============================================================
-     SECTION 3 — VIDEO
+     SECTION 3 — VIDEO SLIDER
      ============================================================ -->
 <div id="video">
   <div class="section-inner">
@@ -421,49 +430,135 @@ footer { padding: 40px 48px; max-width: 1100px; margin: 0 auto; display: flex; a
       <p class="section-label">YouTube works</p>
       <h2 class="section-title">Video Editing</h2>
     </div>
-    <div class="video-grid fade-in">
+    <div class="fade-in">
+      <div class="slider-wrap" data-slider="video">
+        <button class="slider-btn prev" onclick="slide('video',-1)" style="top:calc(50% - 20px);background:rgba(26,26,26,0.08);border-color:rgba(26,26,26,0.15);color:#1a1a1a;">&#8592;</button>
+        <div class="slider-track" id="video" style="gap:20px;">
 
-      <!-- 動画1 -->
-      <!-- href="https://youtu.be/動画ID" の部分を実際のYouTube URLに変えてください -->
-      <a class="video-card" href="https://youtu.be/jEyzbjoKatg" target="_blank" rel="noopener">
-        <div class="video-thumb">
-          <!-- サムネイル画像がある場合: <img src="images/thumb1.jpg" alt="動画1"> -->
-          <!-- YouTubeのサムネイルをそのまま使う場合: <img src="https://img.youtube.com/vi/動画ID/hqdefault.jpg" alt=""> -->
-          <img src="https://img.youtube.com/vi/jEyzbjoKatg/hqdefault.jpg" alt="動画1" style="width:100%;height:100%;object-fit:cover;">
-          <div class="play-icon"><div class="play-circle"><div class="play-triangle"></div></div></div>
-        </div>
-        <div class="video-info">
-          <p class="video-cat">Video Editing</p>
-          <p class="video-title">【秘話】大学時代の思い出を語る！ ジャン・ローレンス・ハーパージュニア×金近廉×大倉颯太×清水宏記 【前編】</p>
-        </div>
-      </a>
+          <a class="slide-item video-slide" href="https://youtu.be/jEyzbjoKatg" target="_blank" rel="noopener">
+            <div class="slide-thumb landscape" style="position:relative;">
+              <img src="https://img.youtube.com/vi/jEyzbjoKatg/hqdefault.jpg" alt="動画1" style="width:100%;height:100%;object-fit:cover;">
+              <div class="play-icon"><div class="play-circle"><div class="play-triangle"></div></div></div>
+            </div>
+            <div class="slide-info"><p class="slide-title" style="color:rgba(255,255,255,0.7);">動画タイトルをここに入力</p></div>
+          </a>
 
-      <!-- 動画2 -->
-      <a class="video-card" href="https://youtu.be/TvFuSfIVSTY" target="_blank" rel="noopener">
-        <div class="video-thumb">
-          <img src="https://img.youtube.com/vi/TvFuSfIVSTY/hqdefault.jpg" alt="動画2" style="width:100%;height:100%;object-fit:cover;">
-          <div class="play-icon"><div class="play-circle"><div class="play-triangle"></div></div></div>
-        </div>
-        <div class="video-info">
-          <p class="video-cat">Video Editing</p>
-          <p class="video-title">【秘話】練習中に喧嘩勃発！？学生時代の思い出を語る！ジャン・ローレンス・ハーパージュニア×金近廉×大倉颯太×清水宏記【後編】</p>
-        </div>
-      </a>
+          <a class="slide-item video-slide" href="https://youtu.be/TvFuSfIVSTY" target="_blank" rel="noopener">
+            <div class="slide-thumb landscape" style="position:relative;">
+              <img src="https://img.youtube.com/vi/TvFuSfIVSTY/hqdefault.jpg" alt="動画2" style="width:100%;height:100%;object-fit:cover;">
+              <div class="play-icon"><div class="play-circle"><div class="play-triangle"></div></div></div>
+            </div>
+            <div class="slide-info"><p class="slide-title" style="color:rgba(255,255,255,0.7);">動画タイトルをここに入力</p></div>
+          </a>
 
-      <!-- 動画3 -->
-      <a class="video-card" href="https://youtu.be/qMo4XVCTC7Q" target="_blank" rel="noopener">
-        <div class="video-thumb">
-          <img src="https://img.youtube.com/vi/qMo4XVCTC7Q/hqdefault.jpg" alt="動画3" style="width:100%;height:100%;object-fit:cover;">
-          <div class="play-icon"><div class="play-circle"><div class="play-triangle"></div></div></div>
-        </div>
-        <div class="video-info">
-          <p class="video-cat">Video Editing</p>
-          <p class="video-title">【対談企画①】 元田大陽×内尾聡理×黒川虎徹 　3人の出会い・第一印象｜大学時代の対戦</p>
-        </div>
-      </a>
+          <a class="slide-item video-slide" href="https://youtu.be/qMo4XVCTC7Q" target="_blank" rel="noopener">
+            <div class="slide-thumb landscape" style="position:relative;">
+              <img src="https://img.youtube.com/vi/qMo4XVCTC7Q/hqdefault.jpg" alt="動画3" style="width:100%;height:100%;object-fit:cover;">
+              <div class="play-icon"><div class="play-circle"><div class="play-triangle"></div></div></div>
+            </div>
+            <div class="slide-info"><p class="slide-title" style="color:rgba(255,255,255,0.7);">動画タイトルをここに入力</p></div>
+          </a>
 
-      <!-- 動画を追加する場合は上の<a>ブロックをコピーして増やしてください -->
+          <a class="slide-item video-slide" href="https://youtu.be/xRvGYwSBdSI" target="_blank" rel="noopener">
+            <div class="slide-thumb landscape" style="position:relative;">
+              <img src="https://img.youtube.com/vi/xRvGYwSBdSI/hqdefault.jpg" alt="動画4" style="width:100%;height:100%;object-fit:cover;">
+              <div class="play-icon"><div class="play-circle"><div class="play-triangle"></div></div></div>
+            </div>
+            <div class="slide-info"><p class="slide-title" style="color:rgba(255,255,255,0.7);">動画タイトルをここに入力</p></div>
+          </a>
 
+          <a class="slide-item video-slide" href="https://youtu.be/0o29dbNdz6I" target="_blank" rel="noopener">
+            <div class="slide-thumb landscape" style="position:relative;">
+              <img src="https://img.youtube.com/vi/0o29dbNdz6I/hqdefault.jpg" alt="動画5" style="width:100%;height:100%;object-fit:cover;">
+              <div class="play-icon"><div class="play-circle"><div class="play-triangle"></div></div></div>
+            </div>
+            <div class="slide-info"><p class="slide-title" style="color:rgba(255,255,255,0.7);">動画タイトルをここに入力</p></div>
+          </a>
+
+          <a class="slide-item video-slide" href="https://youtu.be/ME0Pl82J3ak" target="_blank" rel="noopener">
+            <div class="slide-thumb landscape" style="position:relative;">
+              <img src="https://img.youtube.com/vi/ME0Pl82J3ak/hqdefault.jpg" alt="動画6" style="width:100%;height:100%;object-fit:cover;">
+              <div class="play-icon"><div class="play-circle"><div class="play-triangle"></div></div></div>
+            </div>
+            <div class="slide-info"><p class="slide-title" style="color:rgba(255,255,255,0.7);">動画タイトルをここに入力</p></div>
+          </a>
+
+          <a class="slide-item video-slide" href="https://youtu.be/Sv9OeKc51nE" target="_blank" rel="noopener">
+            <div class="slide-thumb landscape" style="position:relative;">
+              <img src="https://img.youtube.com/vi/Sv9OeKc51nE/hqdefault.jpg" alt="動画7" style="width:100%;height:100%;object-fit:cover;">
+              <div class="play-icon"><div class="play-circle"><div class="play-triangle"></div></div></div>
+            </div>
+            <div class="slide-info"><p class="slide-title" style="color:rgba(255,255,255,0.7);">動画タイトルをここに入力</p></div>
+          </a>
+
+          <a class="slide-item video-slide" href="https://youtu.be/eP8fBCqCz30" target="_blank" rel="noopener">
+            <div class="slide-thumb landscape" style="position:relative;">
+              <img src="https://img.youtube.com/vi/eP8fBCqCz30/hqdefault.jpg" alt="動画8" style="width:100%;height:100%;object-fit:cover;">
+              <div class="play-icon"><div class="play-circle"><div class="play-triangle"></div></div></div>
+            </div>
+            <div class="slide-info"><p class="slide-title" style="color:rgba(255,255,255,0.7);">動画タイトルをここに入力</p></div>
+          </a>
+
+          <a class="slide-item video-slide" href="https://youtu.be/3Y2f5K6ejPE" target="_blank" rel="noopener">
+            <div class="slide-thumb landscape" style="position:relative;">
+              <img src="https://img.youtube.com/vi/3Y2f5K6ejPE/hqdefault.jpg" alt="動画9" style="width:100%;height:100%;object-fit:cover;">
+              <div class="play-icon"><div class="play-circle"><div class="play-triangle"></div></div></div>
+            </div>
+            <div class="slide-info"><p class="slide-title" style="color:rgba(255,255,255,0.7);">動画タイトルをここに入力</p></div>
+          </a>
+
+          <a class="slide-item video-slide" href="https://youtu.be/WjF2Jdx-wXY" target="_blank" rel="noopener">
+            <div class="slide-thumb landscape" style="position:relative;">
+              <img src="https://img.youtube.com/vi/WjF2Jdx-wXY/hqdefault.jpg" alt="動画10" style="width:100%;height:100%;object-fit:cover;">
+              <div class="play-icon"><div class="play-circle"><div class="play-triangle"></div></div></div>
+            </div>
+            <div class="slide-info"><p class="slide-title" style="color:rgba(255,255,255,0.7);">動画タイトルをここに入力</p></div>
+          </a>
+
+          <a class="slide-item video-slide" href="https://youtu.be/Uowf9sFIud8" target="_blank" rel="noopener">
+            <div class="slide-thumb landscape" style="position:relative;">
+              <img src="https://img.youtube.com/vi/Uowf9sFIud8/hqdefault.jpg" alt="動画11" style="width:100%;height:100%;object-fit:cover;">
+              <div class="play-icon"><div class="play-circle"><div class="play-triangle"></div></div></div>
+            </div>
+            <div class="slide-info"><p class="slide-title" style="color:rgba(255,255,255,0.7);">動画タイトルをここに入力</p></div>
+          </a>
+
+          <a class="slide-item video-slide" href="https://youtu.be/JB1P_HEnRsU" target="_blank" rel="noopener">
+            <div class="slide-thumb landscape" style="position:relative;">
+              <img src="https://img.youtube.com/vi/JB1P_HEnRsU/hqdefault.jpg" alt="動画12" style="width:100%;height:100%;object-fit:cover;">
+              <div class="play-icon"><div class="play-circle"><div class="play-triangle"></div></div></div>
+            </div>
+            <div class="slide-info"><p class="slide-title" style="color:rgba(255,255,255,0.7);">動画タイトルをここに入力</p></div>
+          </a>
+
+          <a class="slide-item video-slide" href="https://youtu.be/m727oaBS9gk" target="_blank" rel="noopener">
+            <div class="slide-thumb landscape" style="position:relative;">
+              <img src="https://img.youtube.com/vi/m727oaBS9gk/hqdefault.jpg" alt="動画13" style="width:100%;height:100%;object-fit:cover;">
+              <div class="play-icon"><div class="play-circle"><div class="play-triangle"></div></div></div>
+            </div>
+            <div class="slide-info"><p class="slide-title" style="color:rgba(255,255,255,0.7);">動画タイトルをここに入力</p></div>
+          </a>
+
+          <a class="slide-item video-slide" href="https://youtu.be/hwOfHFI6h6g" target="_blank" rel="noopener">
+            <div class="slide-thumb landscape" style="position:relative;">
+              <img src="https://img.youtube.com/vi/hwOfHFI6h6g/hqdefault.jpg" alt="動画14" style="width:100%;height:100%;object-fit:cover;">
+              <div class="play-icon"><div class="play-circle"><div class="play-triangle"></div></div></div>
+            </div>
+            <div class="slide-info"><p class="slide-title" style="color:rgba(255,255,255,0.7);">動画タイトルをここに入力</p></div>
+          </a>
+
+          <a class="slide-item video-slide" href="https://youtu.be/VBgbWti6_So" target="_blank" rel="noopener">
+            <div class="slide-thumb landscape" style="position:relative;">
+              <img src="https://img.youtube.com/vi/VBgbWti6_So/hqdefault.jpg" alt="動画15" style="width:100%;height:100%;object-fit:cover;">
+              <div class="play-icon"><div class="play-circle"><div class="play-triangle"></div></div></div>
+            </div>
+            <div class="slide-info"><p class="slide-title" style="color:rgba(255,255,255,0.7);">動画タイトルをここに入力</p></div>
+          </a>
+
+        </div>
+        <button class="slider-btn next" onclick="slide('video', 1)" style="top:calc(50% - 20px);background:rgba(26,26,26,0.08);border-color:rgba(26,26,26,0.15);color:#1a1a1a;">&#8594;</button>
+        <div class="slider-dots" id="dots-video"></div>
+      </div>
     </div>
   </div>
 </div>
@@ -578,10 +673,17 @@ function slide(id, dir) {
   track.scrollBy({ left: dir * w, behavior: 'smooth' });
 }
 
-['flyer1','flyer2','flyer3'].forEach(id => {
+['flyer1','flyer2','flyer3','video'].forEach(id => {
   buildDots(id);
   const track = document.getElementById(id);
   if (track) track.addEventListener('scroll', () => updateDots(id), { passive: true });
+});
+
+/* video-slide のサイズをflyer系と合わせる */
+document.querySelectorAll('.video-slide').forEach(el => {
+  el.style.flex = '0 0 calc(33.333% - 14px)';
+  el.style.textDecoration = 'none';
+  el.style.display = 'block';
 });
 
 /* コンタクトフォーム */
